@@ -43,7 +43,8 @@ export { autoActions };
 #### 连接react组件
 auto-redux提供三个hooks，借助autoActions，方便连接store和组件,
 
-##### useReduxActions useReduxState useFetchAction
+```useReduxActions useReduxState useFetchAction```
+
 useReduxActions用来派发修改store的值。
 useReduxState用来获取store的值。
 他们的入参都是initReducer生成的action
