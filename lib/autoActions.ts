@@ -11,7 +11,7 @@ import {
 function generatorAction<T>(type, parent): AutoFunActionTypes<T> {
   const actionType = Symbol(type);
   // 接收一个val，返回新的val
-  function r(val): ActionType<T> {
+  function r(val: T): ActionType<T> {
     return {
       type: actionType,
       payload: val,
@@ -38,22 +38,21 @@ function autoAction<T extends Record<string, any>, U = any>(
   parent = ""
 ): AutoTypeAction<T> {
   const actions: AutoTypeAction<T> = {} as AutoTypeAction<T>;
-  Object.keys(defaultState).map((item) => {
-    const item1 = item as keyof typeof defaultState;
-    const state = defaultState[item1];
+  Object.keys(defaultState).map((item: keyof T) => {
+    const state = defaultState[item];
     // 如果是对象，
     if (
       Object.prototype.toString.call(state) === "[object Object]" &&
-      Object.keys(state as any).length
+      Object.keys(state).length
     ) {
-      actions[item1] = {} as any;
+      actions[item] = {} as any;
 
-      Object.keys(state as any).map((key) => {
-        actions[item][key] = generatorAction<typeof state>(key, item);
+      Object.keys(state).map((key) => {
+        actions[item][key] = generatorAction<T[keyof T]>(key, item);
       });
     } else {
       // 如果是普通值
-      actions[item1] = generatorAction<typeof state>(
+      actions[item] = generatorAction<T[keyof T]>(
         item,
         parent
       ) as T[keyof T] extends Record<any, any>
