@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { AutoFunActionTypes } from "../type";
 
-const useFetchACtion = <T = unknown, U = any>(
+const useFetchAction = <T = unknown, U = any>(
   action: AutoFunActionTypes<U>,
   fetchAction: (...args: T[]) => Promise<U>,
   cb?: (data: U, err?: Error) => void
@@ -21,4 +21,4 @@ const useFetchACtion = <T = unknown, U = any>(
   return [ fn ];
 };
 
-export { useFetchACtion };
+export { useFetchAction };
