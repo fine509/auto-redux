@@ -32,7 +32,7 @@ export { autoActions };
 #### 连接react组件
 auto-redux提供三个hooks，借助autoActions，方便连接store和组件,
 
-```useReduxActions useReduxState useFetchAction```
+```useReduxActions useReduxState useFetchAction useAutoRedux```
 
 useReduxActions用来派发修改store的值。
 useReduxState用来获取store的值。
@@ -40,15 +40,20 @@ useReduxState用来获取store的值。
 
 useFetchAction可以异步修改store的值，只需要传入想修改的aciton即可。
 
+useAutoRedux是useReduxActions和useReduxState的封装
+
 ```jsx
 import React from 'react';
-import { useFetchAction, useReduxActions, useReduxState} from 'auto-redux';
+import { useFetchAction, useReduxActions, useReduxState, useAutoRedux} from 'auto-redux';
 
 import { autoActions } from './store';
 
 function App(){
-    const [home] = useReduxState(autoActions.home)
-    const [setHome] = useReduxActions(autoActions.home)
+    //类似于下面两个
+    const [home, setHome] = useAutoRedux(autoActions.home)
+    //const [home] = useReduxState(autoActions.home)
+    //const [setHome] = useReduxActions(autoActions.home)
+
     const [fn] = useFetchAction(autoActions.home, ()=>{return Promise.resolve('1')}, (data)=>{console.log(data)})
 
     useEffect(()=>{

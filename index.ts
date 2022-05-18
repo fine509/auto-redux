@@ -23,4 +23,4 @@ function initReducers<T extends StateRoot>(
 }
 
 export { initReducers };
-export { useReduxState, useFetchAction, useReduxActions } from "./hooks";
+export { useReduxState, useFetchAction, useReduxActions, useAutoRedux } from "./hooks";
