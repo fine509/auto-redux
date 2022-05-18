@@ -6,13 +6,7 @@
 ```jsx
 
 import { createStore, applyMiddleware } from "redux";
-import { routerMiddleware } from "../connected-react-router/index";
-import logger from "redux-logger";
-import promise from "redux-promise";
-import thunk from "redux-thunk";
 import initReducer from "auto-redux";
-
-import history from "./history";
 
 const defaultState = {
   profile: {
@@ -27,12 +21,7 @@ const defaultState = {
 
 const { autoActions, reducers } = initReducer(defaultState);
 
-const store = applyMiddleware(
-  routerMiddleware(history),
-  thunk,
-  promise,
-  logger
-)(createStore)(reducers, defaultState);
+const store = applyMiddleware()(createStore)(reducers, defaultState);
 
 export default store;
 export { autoActions };
