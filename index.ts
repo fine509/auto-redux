@@ -1,7 +1,6 @@
-import { AnyAction, combineReducers, Reducer } from "redux";
 import { autoAction } from "./lib/autoActions";
 import { autoReducer } from "./lib/autoReducers";
-import { AutoTypeAction, initReducerProps, InitReducersRespronse, StateRoot } from "./type";
+import { AnyAction, AutoTypeAction, initReducerProps, InitReducersRespronse, Reducer, StateRoot } from "./type";
 
 
 let autoActions;
@@ -9,7 +8,7 @@ let autoActions;
 
 
 const initReducers:initReducerProps = <T extends StateRoot>(
-  defaultState: T
+  defaultState: T, combineReducers: any
 ): InitReducersRespronse<T> => {
    autoActions = autoAction(defaultState);
   const reducers = combineReducers(autoReducer(autoActions)) as Reducer<

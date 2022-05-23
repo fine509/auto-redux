@@ -13,14 +13,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "react-redux": ">=8.0.1",
-    "redux": ">=4.2.0"
-  },
-  "dependencies": {
-    "react-redux": ">=8.0.1",
-    "redux": ">=4.2.0"
-  },
+  "peerDependencies": {},
+  "dependencies": {},
   "publishConfig": {
     "access": "public"
   },
