@@ -4,7 +4,7 @@ import { AutoFunActionTypes } from "../type";
 const useFetchAction = <T = unknown, U = any>(
   action: AutoFunActionTypes<U>,
   fetchAction: (...args: T[]) => Promise<U>,
-  cb?: (data: U, err?: Error) => void
+  cb?: (data: U | null, err?: Error) => void
 ) => {
   const dispatch = useDispatch();
   function fn(...args:  T[]) {

@@ -1,3 +1,5 @@
+import { AnyAction, Reducer } from "redux";
+
 //action
 interface AutoFunActionTypes<T = any> {
   (t: T): ActionType<T>;
@@ -29,10 +31,20 @@ type StateRoot = {
   [key: string]: any;
 };
 
+interface InitReducersRespronse<T> {
+  autoActions: AutoTypeAction<T>;
+  reducers: Reducer<any, AnyAction>;
+}
+interface initReducerProps {
+  <T extends StateRoot>(defaultState: T): InitReducersRespronse<T>;
+}
+
 export {
   AutoFunActionTypes,
   StateRoot,
   AutoTypeAction,
   ActionType,
   AutoTypeSonAction,
+  InitReducersRespronse,
+  initReducerProps
 };
