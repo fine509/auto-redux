@@ -8,10 +8,12 @@ interface InitReducersRespronse<T> {
   reducers: Reducer<any, AnyAction>;
 }
 
+let autoActions;
+
 function initReducers<T extends StateRoot>(
   defaultState: T
 ): InitReducersRespronse<T> {
-  const autoActions = autoAction(defaultState);
+   autoActions = autoAction(defaultState);
   const reducers = combineReducers(autoReducer(autoActions)) as Reducer<
     any,
     AnyAction
@@ -22,5 +24,5 @@ function initReducers<T extends StateRoot>(
   };
 }
 
-export { initReducers };
+export { initReducers, autoActions };
 export { useReduxState, useFetchAction, useReduxActions, useAutoRedux } from "./hooks";
