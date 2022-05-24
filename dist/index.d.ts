@@ -22,7 +22,7 @@ interface InitReducersRespronse<T> {
     reducers: Reducer<any, AnyAction>;
 }
 interface initReducerProps {
-    <T extends StateRoot>(defaultState: T, combineReducers: any): InitReducersRespronse<T>;
+    <T extends StateRoot>(defaultState: T): InitReducersRespronse<T>;
 }
 interface Action<T = any> {
     type: T;
