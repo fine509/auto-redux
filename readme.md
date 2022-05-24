@@ -2,10 +2,10 @@
 根据state自动生成aciton和reducer，让你使用redux跟使用useState一样。
 
 具体用法:
-通过auto-redux提供的initReduce。将state和combineReducers，传入给initReducer，返回一个```reducers```和一个```autoAtions```。
+通过auto-redux提供的initReduce。将state,传入给initReducer，返回一个```reducers```和一个```autoAtions```。
 ```jsx
 
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { initReducer } from "auto-redux";
 
 const defaultState = {
@@ -19,7 +19,7 @@ const defaultState = {
   },
 };
 
-const { autoActions, reducers } = initReducer(defaultState, combineReducers);
+const { autoActions, reducers } = initReducer(defaultState);
 
 const store = applyMiddleware()(createStore)(reducers, defaultState);
 
