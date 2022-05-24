@@ -1,4 +1,5 @@
 #### 前言
+* 借鉴组内大佬的思路
 * 使用过redux的同学应该知道，redux每一个状态都需要编写特定的action和reducer，通过react-redux提供的hooks，useDispatch，useSelector去获取状态，派发aciton。比较麻烦。
 * 基于需要编写action和Reducer这一点，开发一个可以根据最初的state，自动生成action，reducer，我们使用状态的时候只需要跟**useState等普通hooks一样**。
 
