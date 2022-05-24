@@ -27,7 +27,7 @@ import {
 } from "/redux";
 
 
-const defaultState 
+const defaultState =  { reducer: 0, reducer: 2 },
 
 const reducer = ()=>{...}
 const render2 = () => {....}
@@ -40,7 +40,7 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  { reducer: 0, reducer: 2 },
+  defaultState
 );
 
 ```
