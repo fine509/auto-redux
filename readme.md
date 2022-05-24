@@ -10,6 +10,7 @@
 ```
 yarn add @lin-react/auto-redux -S
 ```
+目前最新版本是0.1.11
 
 auto-redux依赖于redux@4.2.0以上的版本。话不多说，直接看如何使用。
 
