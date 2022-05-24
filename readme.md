@@ -142,6 +142,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 我们只需要跟useState一样去使用我们的store。即可派发action和获取store的值
 效果：
 ![请添加图片描述](https://img-blog.csdnimg.cn/9138087062434a028cd17da205413934.gif)
+
+
 如上，从test变成了4，点击后加字符串1。
 
 #### 注意事项
