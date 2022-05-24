@@ -2,11 +2,13 @@ interface AutoFunActionTypes<T = any> {
     (t: T): ActionType<T>;
     actionType: Symbol;
     type: string;
-    parent: string;
+    __position: string;
 }
 interface ActionType<T = unknown> {
     type: Symbol;
     payload: T;
+    __label: Symbol;
+    __position: string;
 }
 declare type AutoTypeAction<T> = {
     [key in keyof T]: T[key] extends Record<any, any> ? AutoTypeSonAction<T[key]> : AutoFunActionTypes<T[key]>;

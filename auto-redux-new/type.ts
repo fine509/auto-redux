@@ -10,14 +10,14 @@ interface AutoFunActionTypes<T = any> {
 interface ActionType<T = unknown> {
   type: Symbol;
   payload: T;
-  __label: Symbol;
-  __position: string;
+  __label: Symbol
+  __position: string
 }
 
 // 根据state生成的action对象
 type AutoTypeAction<T> = {
   [key in keyof T]: T[key] extends Record<any, any>
-    ? AutoTypeSonAction<T[key]>
+    ?  T[key] extends{__di: any} ?   AutoFunActionTypes<T[key]> : AutoTypeAction<T[key]>  
     : AutoFunActionTypes<T[key]>;
 };
 
@@ -27,6 +27,7 @@ type AutoTypeAction<T> = {
 //     ?   AutoTypeAction<T[key]>  & AutoFunActionTypes
 //     : AutoFunActionTypes<T[key]>;
 // };
+
 
 // aciton对象第二层
 type AutoTypeSonAction<T> = {
@@ -43,21 +44,22 @@ interface InitReducersRespronse<T> {
   reducers: Reducer<any, AnyAction>;
 }
 interface initReducerProps {
-  <T extends StateRoot>(defaultState: T): InitReducersRespronse<T>;
+  <T extends StateRoot>(defaultState: T,): InitReducersRespronse<T>;
 }
 
-interface Action<T = any> {
-  type: T;
+ interface Action<T = any> {
+  type: T
 }
 
 interface AnyAction extends Action {
-  [extraProps: string]: any;
+  [extraProps: string]: any
 }
 
 type Reducer<S = any, A extends Action = AnyAction> = (
   state: S | undefined,
   action: A
-) => S;
+) => S
+
 
 export {
   AutoFunActionTypes,

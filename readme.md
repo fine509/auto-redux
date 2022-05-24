@@ -5,7 +5,7 @@
 通过auto-redux提供的initReduce。将state和combineReducers，传入给initReducer，返回一个```reducers```和一个```autoAtions```。
 ```jsx
 
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { initReducer } from "auto-redux";
 
 const defaultState = {
@@ -19,7 +19,7 @@ const defaultState = {
   },
 };
 
-const { autoActions, reducers } = initReducer(defaultState, combineReducers);
+const { autoActions, reducers } = initReducer(defaultState);
 
 const store = applyMiddleware()(createStore)(reducers, defaultState);
 
@@ -66,7 +66,7 @@ function App(){
 }
 ```
 
-目前auto-redux只支持两层数据结构，如
+auto-redux支持两层数据结构，如
 ```js
 const defaultState = {
   profile: {

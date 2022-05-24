@@ -6,23 +6,24 @@ import {
   AutoTypeAction,
   AutoTypeSonAction,
 } from "../type";
-const autoActionType = Symbol("action");
+
+const autoActionType = Symbol('action')
+
 // 返回action函数
-function generatorAction<T>(type: string, __position: string): AutoFunActionTypes<T> {
+function generatorAction<T>(type, __position): AutoFunActionTypes<T> {
   const actionType = Symbol(type);
-  const position = `${__position ? __position + "-" : ""}${type}`;
   // 接收一个val，返回新的val
   function r(val: T): ActionType<T> {
     return {
       type: actionType,
       payload: val,
       __label: autoActionType,
-      __position: position,
+      __position: __position,
     };
   }
   r.actionType = actionType;
   r.type = type;
-  r.__position = position;
+  r.__position = __position;
   return r;
 }
 
@@ -48,19 +49,32 @@ function autoAction<T extends Record<string, any>, U = any>(
       Object.prototype.toString.call(state) === "[object Object]" &&
       Object.keys(state).length
     ) {
-      const position = `${index ? index + "-" : ""}${item}`;
       actions[item] = {} as any;
-      Object.keys(state).map((key) => {
-        actions[item][key] = generatorAction<T[keyof T]>(key, position as string);
-      });
+      if(state.__di){
+        Object.keys(state).map((key) => {
+          actions[item]= generatorAction(
+            item,
+            index
+          ) as any
+          //generatorAction<T[keyof T]>(key, item);
+        });
+      }else {
+        const position = `${index ? index + "-" : ""}${item}`;
+        Object.keys(state).map((key) => {
+          actions[item] = autoAction(
+            state,
+            position
+          ) as any
+          //generatorAction<T[keyof T]>(key, item);
+        });
+      }
+     
     } else {
       // 如果是普通值
       actions[item] = generatorAction<T[keyof T]>(
-        item as string,
+        item,
         index
-      ) as T[keyof T] extends Record<any, any>
-        ? AutoTypeSonAction<T[keyof T]>
-        : AutoFunActionTypes<T[keyof T]>;
+      ) as  any
     }
   });
   return actions; //返回一个对象

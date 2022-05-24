@@ -6,12 +6,24 @@ const useSelector = <T = unknown>(selector: (state: StateRoot) => T): T => {
 };
 
 // 将type和Parent挂载在aciton上面，就可以通过useSelector精准的拿到对应的值
-const useReduxState = <T>(action: AutoFunActionTypes<T>): [T] => {
+const useReduxState = <T>(action: AutoFunActionTypes<T>):[T] => {
   const { __position, type } = action;
 
   const { [type]: val } = useSelector((state) => {
-    const [key1, key2] = __position.split("-");
-    return { [type]: key2 ? state[key1][key2] : state[key1] };
+    if (__position) {
+      let copyData = <any>{}
+      const arr = __position.split('-')
+      arr.forEach((item, index)=>{
+        if(index === 0){
+          copyData = state[item]
+        }else{
+          copyData = copyData[item]
+        }
+      })
+      return { [type]: copyData[type] };
+    } else {
+      return { [type]: state[type] };
+    }
   });
   //将返回对象的值取出来
   return [val];
