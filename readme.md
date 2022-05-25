@@ -67,7 +67,7 @@ const defaultState = {
   home: 'test',
   
   person: personState,
-  home: homeState,
+  home1: homeState,
   photo: photoState,
 };
 
