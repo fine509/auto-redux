@@ -25,7 +25,7 @@ import {
   bindActionCreators,
   combineReducers,
   applyMiddleware,
-} from "/redux";
+} from "redux";
 
 
 const defaultState =  { reducer: 0, reducer: 2 },
@@ -53,12 +53,6 @@ import { initReducers } from "@lin-react/auto-redux";
 import { initialState as personState } from "...";
 import { initialState as homeState } from "...";
 import { initialState as photoState } from "...";
-
-const stateRoot = {
-  person: personState,
-  home: homeState,
-  photo: photoState,
-};
 
 const defaultState = {
   profile: {
